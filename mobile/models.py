@@ -10,7 +10,7 @@ class AppUser(models.Model):
     password = models.CharField(max_length=256, blank=True, null=True)
     email = models.EmailField()
     mobileNumber = models.CharField(max_length=10)
-    tokens = models.FloatField(0)
+    tokens = models.FloatField(default=0)
 
     def __str__(self) -> str:
         return self.username
