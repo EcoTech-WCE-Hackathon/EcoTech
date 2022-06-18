@@ -11,6 +11,7 @@ from datetime import timedelta
 
 class AdminRegistrationAPI(generics.GenericAPIView):
     serializer_class = CreateAdminProfileSerializer
+    throttle_scope = "user"
 
     def post(self, request, *args, **kwargs):
 
@@ -23,6 +24,7 @@ class AdminRegistrationAPI(generics.GenericAPIView):
 
 class GetStatsAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
+    throttle_scope = "user"
 
     def get(self, request, *args, **kwargs):
         reports = Report.objects.all()

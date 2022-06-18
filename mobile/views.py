@@ -12,6 +12,7 @@ from django.utils import timezone
 
 
 class AppUserRegistrationAPI(generics.GenericAPIView):
+    throttle_scope = "user"
     serializer_class = CreateAppUserProfileSerializer
 
     def post(self, request, *args, **kwargs):
@@ -25,6 +26,7 @@ class AppUserRegistrationAPI(generics.GenericAPIView):
 
 class AppUserProfileAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
+    throttle_scope = "user"
 
     def get(self, request, *args, **kwargs):
         app_user = AppUser.objects.get(user=request.user)
@@ -39,6 +41,7 @@ class AppUserProfileAPI(generics.GenericAPIView):
 
 class GetStatsAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
+    throttle_scope = "user"
 
     def get(self, request, *args, **kwargs):
         app_user = AppUser.objects.get(user=request.user)
@@ -82,6 +85,7 @@ class GetStatsAPI(generics.GenericAPIView):
 
 class ReportEWasteAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
+    throttle_scope = "user"
 
     def post(self, request, *args, **kwargs):
         image = request.data["image"]

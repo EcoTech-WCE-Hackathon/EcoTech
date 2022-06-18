@@ -11,6 +11,7 @@ import uuid
 
 class RecyclerRegistrationAPI(generics.GenericAPIView):
     serializer_class = CreateRecyclerProfileSerializer
+    throttle_scope = "user"
 
     def post(self, request, *args, **kwargs):
 
@@ -23,6 +24,7 @@ class RecyclerRegistrationAPI(generics.GenericAPIView):
 
 class WasteListAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
+    throttle_scope = "user"
 
     def get(self, request, *args, **kwargs):
         reports = Report.objects.filter(approved=True, pickedUp=False).values()
