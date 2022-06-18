@@ -23,7 +23,7 @@ init.env.bash
 entrypoint.sh
 # AWS User-specific
 .idea/**/aws.xml
-
+startup.sh
 # Generated files
 .idea/**/contentModel.xml
 

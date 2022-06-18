@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from asyncio import constants
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4=ogs4*gnupj)2$fpo9s9nf$@8+q^cg&70^j_@r-r$sc8yp#s9'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY','django-insecure-4=ogs4*gnupj)2$fpo9s9nf$@8+q^cg&70^j_@r-r$sc8yp#s9')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +43,8 @@ INSTALLED_APPS = [
     "dashboard.apps.DashboardConfig",
     "recycler.apps.RecyclerConfig",
     "mobile.apps.MobileConfig",
-    'authentication.apps.AuthenticationConfig'
+    'authentication.apps.AuthenticationConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +129,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY',"NO_KEY_PROVIDED")
+AWS_SECRET_ACCESS_KEY_ID = os.getenv('AWS_SECRET_ACCESS_KEY_ID',"NO_ID_PROVIDED")
+AWS_S3_BUCKET_NAME=os.getenv('AWS_S3_BUCKET_NAME','S3_BUCKET_NAME_NOT_PROVIDED')
+
+
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

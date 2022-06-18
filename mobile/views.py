@@ -1,12 +1,12 @@
 from datetime import datetime,timedelta
 from mobile.models import AppUser
 from dashboard.models import Report
+from mobile.utils import upload_image_to_s3
 from .serializers import CreateAppUserProfileSerializer
 from rest_framework.permissions import IsAuthenticated
 from authentication.utils import get_tokens_for_user
 from rest_framework import generics
 from rest_framework.response import Response
-
 
 
 class AppUserRegistrationAPI(generics.GenericAPIView):
@@ -70,4 +70,15 @@ class ReportEWasteAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self,request,*args,**kwargs):
-        pass
+        image = request.data['image']
+        location = request.data['location']
+        wasteType = request.data['wasteType']
+        appUser = AppUser.objects.get(user = request.user)
+        approved = True
+        report = Report(approved=approved,image=image,appUser=appUser,wasteType=wasteType,location=location)
+        name = str(report.image_id)
+        extension = image.name.split('.')[-1]
+        report.image_name_s3 = name+"."+extension
+        upload_image_to_s3(image,name,extension)
+        report.save()
+        return Response({'message':'successful'})
