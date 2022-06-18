@@ -1,7 +1,8 @@
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 from mobile.models import AppUser
 from dashboard.models import Report
 from mobile.utils import upload_image_to_s3
+from mobile.predictor import Predictor
 from .serializers import CreateAppUserProfileSerializer
 from rest_framework.permissions import IsAuthenticated
 from authentication.utils import get_tokens_for_user
@@ -20,23 +21,25 @@ class AppUserRegistrationAPI(generics.GenericAPIView):
         token = get_tokens_for_user(user)
         return Response({"data": {"token": token}})
 
+
 class AppUserProfileAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
 
-    def get(self,request,*args,**kwargs):
+    def get(self, request, *args, **kwargs):
         app_user = AppUser.objects.get(user=request.user)
         resp = {
-            'username':app_user.username,
-            'name':app_user.name,
-            'email':app_user.email,
-            'tokens':app_user.tokens
+            "username": app_user.username,
+            "name": app_user.name,
+            "email": app_user.email,
+            "tokens": app_user.tokens,
         }
-        return Response({"data":{'profile':resp}})
+        return Response({"data": {"profile": resp}})
+
 
 class GetStatsAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
 
-    def get(self,request,*args,**kwargs):
+    def get(self, request, *args, **kwargs):
         app_user = AppUser.objects.get(user=request.user)
         reports = Report.objects.filter(appUser=app_user)
         total_reports = len(reports)
@@ -47,38 +50,48 @@ class GetStatsAPI(generics.GenericAPIView):
         prev_week = today - timedelta(7)
         prev_week_reports = []
         for report in reports:
-            if(report['approved']):
-                total_approved+=1
-                if(report['pickedUp']):
-                    weight += report['weight']
-                    total_picked_up+=1
-            if(prev_week<=report['created_at']<=today):
+            if report["approved"]:
+                total_approved += 1
+                if report["pickedUp"]:
+                    weight += report["weight"]
+                    total_picked_up += 1
+            if prev_week <= report["created_at"] <= today:
                 prev_week_reports.append(report)
-        toxins = weight*0.1
-        
+        toxins = weight * 0.1
+
         resp = {
-            'toxins':toxins,
-            'weight':weight,
-            'prev_week_reports':prev_week_reports,
-            'total_reports':total_reports,
-            'total_approved':total_approved,
-            'total_picked_up':total_picked_up,
+            "toxins": toxins,
+            "weight": weight,
+            "prev_week_reports": prev_week_reports,
+            "total_reports": total_reports,
+            "total_approved": total_approved,
+            "total_picked_up": total_picked_up,
         }
         return Response({"data": {"stats": resp}})
+
 
 class ReportEWasteAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
 
-    def post(self,request,*args,**kwargs):
-        image = request.data['image']
-        location = request.data['location']
-        wasteType = request.data['wasteType']
-        appUser = AppUser.objects.get(user = request.user)
-        approved = True
-        report = Report(approved=approved,image=image,appUser=appUser,wasteType=wasteType,location=location)
+    def post(self, request, *args, **kwargs):
+        image = request.data["image"]
+        location = request.data["location"]
+        wasteType = request.data["wasteType"]
+        appUser = AppUser.objects.get(user=request.user)
+        approved = Predictor.predict(image)
+        report = Report(
+            approved=approved,
+            image=image,
+            appUser=appUser,
+            wasteType=wasteType,
+            location=location,
+        )
         name = str(report.image_id)
-        extension = image.name.split('.')[-1]
-        report.image_name_s3 = name+"."+extension
-        upload_image_to_s3(image,name,extension)
+        extension = image.name.split(".")[-1]
+        report.image_name_s3 = name + "." + extension
+        upload_image_to_s3(image, name, extension)
+        report.image.name = name + "." + extension
         report.save()
-        return Response({'message':'successful'})
+        return Response(
+            {"message": "successfully submitted", "data": {"approval_status": approved}}
+        )
