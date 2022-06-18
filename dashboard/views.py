@@ -47,18 +47,23 @@ class GetStatsAPI(generics.GenericAPIView):
                     weight += report.weight
                     total_picked_up += 1
                 if prev_week <= report.created_at <= today:
+                    recycler = None
+                    if report.recycler:
+                        recycler = report.recycler.username
+                    else:
+                        recycler = report.recycler
                     cur_report = {
                         "approved": True,
                         "weight": report.weight,
                         "wasteType": report.wasteType,
-                        "recycler": report.recycler,
+                        "recycler": recycler,
                         "location": report.location,
                         "picked_up": report.pickedUp,
                         "created_at": report.created_at,
                         "updated_at": report.updated_at,
                     }
                     if report.pickedUp:
-                        prev_week_reports_picked(cur_report)
+                        prev_week_reports_picked.append(cur_report)
                     else:
                         prev_week_reports_approved.append(cur_report)
         toxins = weight * 0.1

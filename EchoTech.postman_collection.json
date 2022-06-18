@@ -19,7 +19,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NjM2NjY0LCJpYXQiOjE2NTU1NTAyNjQsImp0aSI6ImNmYmNjZGFjMWMxYjQzNzI4ZjI5OWMyMzdhMGNiNTQxIiwidXNlcl9pZCI6NX0.ho2PJBITlqwBK1YXEGrJFmDUzly9uLxJbNbPXKNZJ5U",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NjQxODI0LCJpYXQiOjE2NTU1NTU0MjQsImp0aSI6ImNlZDVkODAwZGE0YjRiMmI4NzMyNTBhODJhNzIyN2QxIiwidXNlcl9pZCI6Mn0.Ir9O0jBPO38lzNm13C8fJXnVHwpW4xgBVqnlg4TFAF0",
 									"type": "string"
 								}
 							]
@@ -36,12 +36,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/dashboard/stats",
+							"raw": "{{host}}/api/v1/dashboard/stats",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"dashboard",
 								"stats"
 							]
@@ -64,12 +65,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/dashboard/register",
+							"raw": "{{host}}/api/v1/dashboard/register",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"dashboard",
 								"register"
 							]
@@ -97,12 +99,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/mobile/register",
+							"raw": "{{host}}/api/v1/mobile/register",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"mobile",
 								"register"
 							]
@@ -126,12 +129,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/mobile/stats",
+							"raw": "{{host}}/api/v1/mobile/stats",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"mobile",
 								"stats"
 							]
@@ -175,12 +179,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/api/mobile/report",
+							"raw": "{{host}}/api/v1/mobile/report",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"mobile",
 								"report"
 							]
@@ -204,12 +209,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/mobile/profile",
+							"raw": "{{host}}/api/v1/mobile/profile",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"mobile",
 								"profile"
 							]
@@ -237,12 +243,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/recycler/register",
+							"raw": "{{host}}/api/v1/recycler/register",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"recycler",
 								"register"
 							]
@@ -266,12 +273,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/recycler/pickup",
+							"raw": "{{host}}/api/v1/recycler/pickup",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"recycler",
 								"pickup"
 							]
@@ -304,12 +312,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/recycler/pickup",
+							"raw": "{{host}}/api/v1/recycler/pickup",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"recycler",
 								"pickup"
 							]
@@ -337,12 +346,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/auth/login",
+							"raw": "{{host}}/api/v1/auth/login",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"auth",
 								"login"
 							]
@@ -365,12 +375,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/auth/token/refresh",
+							"raw": "{{host}}/api/v1/auth/token/refresh",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"v1",
 								"auth",
 								"token",
 								"refresh"
