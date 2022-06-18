@@ -1,1 +1,1 @@
-# WCE Hackathon - EchoTech Backend
+# WCE Hackathon - EcoTech Backend

@@ -20,14 +20,15 @@ class Transaction(models.Model):
     appuser = models.ForeignKey(AppUser,on_delete=CASCADE,null=True,blank=True)
     recycler = models.ForeignKey(Recycler,on_delete=CASCADE,null=True,blank=True)
     amount = models.DecimalField(decimal_places=2,max_digits=10)
-    # def __str__(self):
-    #     return self.name
+
+
 class Report(models.Model):
     WASTE_TYPE_CHOICES = (("computer", "computer"), ("cables", "cables"), ("display", "display"),("mobile","mobile"),("others","others"))
     approved = models.BooleanField(default=False)
+    image = models.ImageField(upload_to='images/',default="/images/default.jpg")
     appUser = models.ForeignKey(AppUser,on_delete=CASCADE,null=True,blank=True)
     recycler = models.ForeignKey(Recycler,on_delete=CASCADE,null=True,blank=True)
-    weight = models.DecimalField(decimal_places=2,max_digits=10)
+    weight = models.DecimalField(decimal_places=2,max_digits=10,default=0,null=True,blank=True)
     wasteType = models.CharField(
         choices=WASTE_TYPE_CHOICES, default="others", blank=True, null=True, max_length=10
     )
