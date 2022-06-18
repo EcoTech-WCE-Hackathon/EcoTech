@@ -1,15 +1,267 @@
 import Head from "next/head";
 import Image from "next/image";
+import { DoughnutChart } from "../components/Doughnut";
+import { LineChart } from "../components/Line";
 
 export default function Home() {
   return (
-    <div>
+    <div className="flex">
       <Head>
         <title>Admin | EchoTech</title>
         <meta name="description" content="Admin Website for Echotech" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-3xl text-green-500 font-bold">Hello WCE Hackathon</h1>
+
+      {/* card section 1*/}
+
+      <div className=" bg-white min-h-screen p-5 w-1/6">
+        <div className=" flex justify-start mb-10">
+          <div className="w-14 h-14 bg-green-500 my-auto rounded-full"></div>
+          <div className="text-4xl font-extrabold ml-3 my-auto">EcoTech</div>
+        </div>
+        <div className=" flex justify-start hover:bg-[#E7F4F4] p-3 hover:cursor-pointer">
+          <div className="w-7 h-7 bg-black my-auto rounded-full"></div>
+          <div className="text-2xl ml-5">Dashboard</div>
+        </div>
+        <div className=" flex justify-start hover:bg-[#E7F4F4] p-3 hover:cursor-pointer">
+          <div className="w-7 h-7 bg-black my-auto rounded-full"></div>
+          <div className="text-2xl ml-5">Transactions</div>
+        </div>
+        <div className=" flex justify-start hover:bg-[#E7F4F4] p-3 hover:cursor-pointer">
+          <div className="w-7 h-7 bg-black my-auto rounded-full"></div>
+          <div className="text-2xl ml-5">Reports</div>
+        </div>
+        <div className=" flex justify-start hover:bg-[#E7F4F4] p-3 hover:cursor-pointer">
+          <div className="w-7 h-7 bg-black my-auto rounded-full"></div>
+          <div className="text-2xl ml-5">Recyclers</div>
+        </div>
+      </div>
+      <div className=" bg-[#E7F4F4] min-h-screen p-5 w-4/6">
+        <div className="text-2xl font-bold">Overview</div>
+        <div className="mt-7 flex justify-between">
+          <div className=" rounded-3xl flex p-5 bg-white justify-start w-[350px]">
+            <div className="h-10 w-10 bg-[#5BBBBB] rounded-full my-auto"></div>
+            <div className="ml-4 m-auto">
+              <div className=" font-normal">Users</div>
+              <div className="font-bold text-2xl">10000</div>
+            </div>
+          </div>
+          <div className=" rounded-3xl flex p-5 bg-white justify-start w-[350px]">
+            <div className="h-10 w-10 bg-[#5BBBBB] rounded-full my-auto"></div>
+            <div className="ml-4 m-auto">
+              <div className=" font-normal">Reports</div>
+              <div className="font-bold text-2xl">100000</div>
+            </div>
+          </div>
+          <div className=" rounded-3xl flex p-5 bg-white justify-start w-[350px]">
+            <div className="h-10 w-10 bg-[#5BBBBB] rounded-full my-auto"></div>
+            <div className="ml-4 m-auto">
+              <div className=" font-normal">Recyclers</div>
+              <div className="font-bold text-2xl">20</div>
+            </div>
+          </div>
+        </div>
+
+        {/* graph section */}
+        <div className="mt-14 flex justify-between">
+          <div className=" rounded-3xl pl-5 pt-5 bg-white  w-[700px]">
+            <div className=" font-extrabold">Top 5 Recycling States</div>
+            <div className="w-[300px] mx-auto">
+              <DoughnutChart />
+            </div>
+          </div>
+          <div className=" rounded-3xl p-5 bg-[#5BBBBB]  w-[400px] text-white flex flex-col justify-between">
+            <div>
+              <div className=" font-normal text-lg mt-5">
+                Types of waste collected
+              </div>
+              <div className="font-extrabold text-3xl">8</div>
+            </div>
+            <div>
+              <div className=" font-normal text-lg mt-5">
+                Total waste collected
+              </div>
+              <div className="flex">
+                <div className="font-extrabold text-3xl">560</div>
+                <div className=" mt-3 ml-2 text-lg">kg</div>
+              </div>
+            </div>
+            <div>
+              <div className=" font-normal text-lg mt-5">
+                Total waste recycled
+              </div>
+              <div className="flex">
+                <div className="font-extrabold text-3xl">450</div>
+                <div className=" mt-3 ml-2 text-lg">kg</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mt-14">
+          <div className="bg-white p-5 rounded-3xl w-full">
+            <div className="w-full mx-auto">
+              <LineChart />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className=" bg-white min-h-screen p-5 w-1/6">
+        <div className=" rounded-3xl flex p-5 bg-[#5BBBBB] justify-start w-[275px] text-white mt-14">
+          <div className="h-14 w-14 bg-white rounded-full my-auto"></div>
+          <div className="ml-4 m-auto">
+            <div className=" font-normal text-lg">Income</div>
+            <div className="font-bold text-3xl">Rs. 10000</div>
+          </div>
+        </div>
+        <div className="font-extrabold text-2xl mt-10 mb-2">
+          Recent Transactions
+        </div>
+
+        {/* Transactions */}
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Credit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Debit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Credit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Debit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Credit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Debit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Credit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Debit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Credit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Debit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Credit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Debit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+        <div className="flex justify-between mt-5">
+          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
+          <div className="my-auto">
+            <div className="font-bold text-md ">Credit</div>
+            <div className="text-gray-400 text-sm">Hotel Garden</div>
+          </div>
+          <div className="my-auto">
+            <div className="font-bold text-md">Rs. 100</div>
+            <div className="text-gray-400 text-sm">12th May 2021</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
