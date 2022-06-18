@@ -21,7 +21,7 @@ class Transaction(models.Model):
     transactionType = models.BooleanField()
     appuser = models.ForeignKey(AppUser, on_delete=CASCADE, null=True, blank=True)
     recycler = models.ForeignKey(Recycler, on_delete=CASCADE, null=True, blank=True)
-    amount = models.DecimalField(decimal_places=2, max_digits=10)
+    amount = models.FloatField()
 
 
 class Report(models.Model):
@@ -45,9 +45,7 @@ class Report(models.Model):
 
     recycler = models.ForeignKey(Recycler, on_delete=CASCADE, null=True, blank=True)
 
-    weight = models.DecimalField(
-        decimal_places=2, max_digits=10, default=0, null=True, blank=True
-    )
+    weight = models.FloatField(default=0, null=True, blank=True)
 
     wasteType = models.CharField(
         choices=WASTE_TYPE_CHOICES,

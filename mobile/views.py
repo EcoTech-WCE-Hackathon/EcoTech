@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 from mobile.models import AppUser
 from dashboard.models import Report
 from mobile.utils import upload_image_to_s3
@@ -72,10 +72,10 @@ class GetStatsAPI(generics.GenericAPIView):
         resp = {
             "toxins": toxins,
             "weight": weight,
-            "prev_week_reports": prev_week_reports,
             "total_reports": total_reports,
             "total_approved": total_approved,
             "total_picked_up": total_picked_up,
+            "prev_week_reports": prev_week_reports,
         }
         return Response({"data": {"stats": resp}})
 
