@@ -8,6 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from authentication.utils import get_tokens_for_user
 from rest_framework import generics
 from rest_framework.response import Response
+from django.utils import timezone
 
 
 class AppUserRegistrationAPI(generics.GenericAPIView):
@@ -46,19 +47,28 @@ class GetStatsAPI(generics.GenericAPIView):
         total_picked_up = 0
         total_approved = 0
         weight = 0
-        today = datetime.now()
+        today = timezone.now()
         prev_week = today - timedelta(7)
         prev_week_reports = []
         for report in reports:
-            if report["approved"]:
+            if report.approved:
                 total_approved += 1
-                if report["pickedUp"]:
-                    weight += report["weight"]
+                if report.pickedUp:
+                    weight += report.weight
                     total_picked_up += 1
-            if prev_week <= report["created_at"] <= today:
-                prev_week_reports.append(report)
+            if prev_week <= report.created_at <= today:
+                cur_report = {
+                    "approved": True,
+                    "weight": report.weight,
+                    "wasteType": report.wasteType,
+                    "recycler": report.recycler,
+                    "location": report.location,
+                    "picked_up": report.pickedUp,
+                    "created_at": report.created_at,
+                    "updated_at": report.updated_at,
+                }
+                prev_week_reports.append(cur_report)
         toxins = weight * 0.1
-
         resp = {
             "toxins": toxins,
             "weight": weight,
