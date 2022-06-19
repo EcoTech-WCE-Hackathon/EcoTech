@@ -54,11 +54,23 @@ export default function Login() {
     <>
       <Head>
         <title>Login | EcoTech Recyclers</title>
-        <meta
-          name="description"
-          content="A Website to generate your own Youtube Wrapped"
-        />
+        <meta name="description" content="Login For EcoTech Recyclers" />
         <link rel="icon" href="/favicon.png" />
+        <meta property="og:image" content="/site.png" />
+
+        <meta property="og:url" content="https://recyclers.eco-tech.cf/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Admin | EchoTech" />
+        <meta property="og:description" content="Admin Website for Echotech" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="recyclers.eco-tech.cf" />
+        <meta property="twitter:url" content="https://recyclers.eco-tech.cf/" />
+        <meta name="twitter:title" content="Admin | EchoTech" />
+        <meta name="twitter:description" content="Admin Website for Echotech" />
+        <meta
+          name="twitter:image"
+          content="https://recyclers.eco-tech.cf/site.png"
+        />
       </Head>
       <div className="flex min-h-screen w-full flex-col bg-[#E7F4F4]">
         <div className="mx-auto my-auto flex h-fit w-full flex-col-reverse justify-between rounded-lg bg-none p-10 sm:w-1/2 sm:flex-row sm:bg-white">

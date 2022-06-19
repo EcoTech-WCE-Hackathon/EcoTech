@@ -42,11 +42,24 @@ export default function Home() {
   };
   return (
     <div className="w-full bg-[#E7F4F4] min-h-screen p-5">
-      <Head>
-        <title>Recyclers | EcoTech</title>
-        <meta name="description" content="EcoTech Recyclers" />
-        <link rel="icon" href="/favicon.png" />
-      </Head>
+      <title> Recyclers | EcoTech</title>
+      <meta name="description" content="Login For EcoTech Recyclers" />
+      <link rel="icon" href="/favicon.png" />
+      <meta property="og:image" content="/site.png" />
+
+      <meta property="og:url" content="https://recyclers.eco-tech.cf/" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Admin | EchoTech" />
+      <meta property="og:description" content="Admin Website for Echotech" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta property="twitter:domain" content="recyclers.eco-tech.cf" />
+      <meta property="twitter:url" content="https://recyclers.eco-tech.cf/" />
+      <meta name="twitter:title" content="Admin | EchoTech" />
+      <meta name="twitter:description" content="Admin Website for Echotech" />
+      <meta
+        name="twitter:image"
+        content="https://recyclers.eco-tech.cf/site.png"
+      />
       <div className=" font-bold text-3xl text-[#5BBBBB]">
         Welcome to Eco-Tech Recyclers dashboard
       </div>
