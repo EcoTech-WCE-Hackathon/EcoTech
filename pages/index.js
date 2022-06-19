@@ -1,10 +1,21 @@
-import { data } from "autoprefixer";
 import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { DoughnutChart } from "../components/Doughnut";
 import { LineChart } from "../components/Line";
 import { transactions } from "../utils/transactions";
+import creditPNG from "../assets/credit.png";
+import debitPNG from "../assets/debit.png";
+import homePNG from "../assets/home.png";
+import incomePNG from "../assets/income.png";
+import logoPNG from "../assets/logo.png";
+import recycler_tabPNG from "../assets/recycler_tab.png";
+import recyclersPNG from "../assets/recyclers.png";
+import reportPNG from "../assets/report.png";
+import transactionsPNG from "../assets/transactions.png";
+import usersPNG from "../assets/users.png";
+import wastePNG from "../assets/waste.png";
+
 export default function Home() {
   const [dashState, setDashState] = useState({
     prev_week_reports_approved: [],
@@ -44,23 +55,35 @@ export default function Home() {
 
       <div className=" bg-white min-h-screen p-5 w-1/6">
         <div className=" flex justify-start mb-10">
-          <div className="w-14 h-14 bg-green-500 my-auto rounded-full"></div>
+          <img
+            src={logoPNG.src}
+            className="w-14 h-14 my-auto "
+            alt="dashboard"
+          />
           <div className="text-4xl font-extrabold ml-3 my-auto">EcoTech</div>
         </div>
         <div className=" flex justify-start hover:bg-[#E7F4F4] p-3 hover:cursor-pointer">
-          <div className="w-7 h-7 bg-black my-auto rounded-full"></div>
+          <img src={homePNG.src} className="w-7 h-7 my-auto" alt="dashboard" />
           <div className="text-2xl ml-5">Dashboard</div>
         </div>
         <div className=" flex justify-start hover:bg-[#E7F4F4] p-3 hover:cursor-pointer">
-          <div className="w-7 h-7 bg-black my-auto rounded-full"></div>
+          <img
+            src={transactionsPNG.src}
+            className="w-7 h-7 my-auto"
+            alt="transactions"
+          />
           <div className="text-2xl ml-5">Transactions</div>
         </div>
         <div className=" flex justify-start hover:bg-[#E7F4F4] p-3 hover:cursor-pointer">
-          <div className="w-7 h-7 bg-black my-auto rounded-full"></div>
+          <img src={reportPNG.src} className="w-7 h-7 my-auto" alt="report" />
           <div className="text-2xl ml-5">Reports</div>
         </div>
         <div className=" flex justify-start hover:bg-[#E7F4F4] p-3 hover:cursor-pointer">
-          <div className="w-7 h-7 bg-black my-auto rounded-full"></div>
+          <img
+            src={recycler_tabPNG.src}
+            className="w-7 h-7 my-auto"
+            alt="recycler"
+          />
           <div className="text-2xl ml-5">Recyclers</div>
         </div>
       </div>
@@ -68,7 +91,7 @@ export default function Home() {
         <div className="text-2xl font-bold">Overview</div>
         <div className="mt-7 flex justify-between">
           <div className=" rounded-3xl flex p-5 bg-white justify-start w-[350px]">
-            <div className="h-10 w-10 bg-[#5BBBBB] rounded-full my-auto"></div>
+            <img src={usersPNG.src} className="w-10 h-10 my-auto" alt="users" />
             <div className="ml-4 m-auto">
               <div className=" font-normal">Users</div>
               <div className="font-bold text-2xl">
@@ -77,7 +100,7 @@ export default function Home() {
             </div>
           </div>
           <div className=" rounded-3xl flex p-5 bg-white justify-start w-[350px]">
-            <div className="h-10 w-10 bg-[#5BBBBB] rounded-full my-auto"></div>
+            <img src={wastePNG.src} className="w-10 h-10 my-auto" alt="waste" />
             <div className="ml-4 m-auto">
               <div className=" font-normal">Reports</div>
               <div className="font-bold text-2xl">
@@ -86,7 +109,11 @@ export default function Home() {
             </div>
           </div>
           <div className=" rounded-3xl flex p-5 bg-white justify-start w-[350px]">
-            <div className="h-10 w-10 bg-[#5BBBBB] rounded-full my-auto"></div>
+            <img
+              src={recyclersPNG.src}
+              className="w-10 h-10 my-auto"
+              alt="recyclers"
+            />
             <div className="ml-4 m-auto">
               <div className=" font-normal">Recyclers</div>
               <div className="font-bold text-2xl">
@@ -152,7 +179,7 @@ export default function Home() {
       </div>
       <div className=" bg-white min-h-screen p-5 w-1/6">
         <div className=" rounded-3xl flex p-5 bg-[#5BBBBB] justify-start w-[275px] text-white mt-14">
-          <div className="h-14 w-14 bg-white rounded-full my-auto"></div>
+          <img src={incomePNG.src} className="w-14 h-14 my-auto" alt="income" />
           <div className="ml-4 m-auto">
             <div className=" font-normal text-lg">Income</div>
             <div className="font-bold text-3xl">Rs. {dashState.income}</div>
@@ -166,13 +193,14 @@ export default function Home() {
 
         {dashState.transactions.length !== 0
           ? dashState.transactions.map((tx) => {
-              let style =
-                tx.type === "Credit"
-                  ? "h-14 w-14 bg-green-500 rounded-full my-auto"
-                  : "h-14 w-14 bg-red-500 rounded-full my-auto";
+              let imgsrc = tx.type === "Credit" ? creditPNG : debitPNG;
               return (
                 <div className="flex justify-between mt-5" key={tx}>
-                  <div className={style}></div>
+                  <img
+                    src={imgsrc.src}
+                    className="h-14 w-14 rounded-full my-auto"
+                    alt="transact"
+                  />
                   <div className="my-auto">
                     <div className="font-bold text-md ">{tx.type}</div>
                     <div className="text-gray-400 text-sm">{tx.company}</div>
