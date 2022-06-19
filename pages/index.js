@@ -1,9 +1,31 @@
+import { data } from "autoprefixer";
+import axios from "axios";
 import Head from "next/head";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import { DoughnutChart } from "../components/Doughnut";
 import { LineChart } from "../components/Line";
-
 export default function Home() {
+  const [dashState, setDashState] = useState({
+    prev_week_reports_approved: [],
+    prev_week_reports_picked: [],
+    total_approved: 0,
+    total_recyclers: 0,
+    total_reports: 0,
+    toxins: 0,
+    waste_types: {},
+    weight: 0,
+    appusers: 0,
+  });
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
+    let resp = await axios.get(
+      `${process.env.NEXT_PUBLIC_SERVER}/api/v1/dashboard/stats`
+    );
+    console.log(resp.data.data);
+    setDashState({ dashState, ...resp.data.data.stats });
+  };
   return (
     <div className="flex">
       <Head>
@@ -43,21 +65,27 @@ export default function Home() {
             <div className="h-10 w-10 bg-[#5BBBBB] rounded-full my-auto"></div>
             <div className="ml-4 m-auto">
               <div className=" font-normal">Users</div>
-              <div className="font-bold text-2xl">10000</div>
+              <div className="font-bold text-2xl">
+                {dashState.appusers ? dashState.appusers : 0}
+              </div>
             </div>
           </div>
           <div className=" rounded-3xl flex p-5 bg-white justify-start w-[350px]">
             <div className="h-10 w-10 bg-[#5BBBBB] rounded-full my-auto"></div>
             <div className="ml-4 m-auto">
               <div className=" font-normal">Reports</div>
-              <div className="font-bold text-2xl">100000</div>
+              <div className="font-bold text-2xl">
+                {dashState.total_approved ? dashState.total_approved : 0}
+              </div>
             </div>
           </div>
           <div className=" rounded-3xl flex p-5 bg-white justify-start w-[350px]">
             <div className="h-10 w-10 bg-[#5BBBBB] rounded-full my-auto"></div>
             <div className="ml-4 m-auto">
               <div className=" font-normal">Recyclers</div>
-              <div className="font-bold text-2xl">20</div>
+              <div className="font-bold text-2xl">
+                {dashState.total_recyclers ? dashState.total_recyclers : 0}
+              </div>
             </div>
           </div>
         </div>
@@ -75,14 +103,20 @@ export default function Home() {
               <div className=" font-normal text-lg mt-5">
                 Types of waste collected
               </div>
-              <div className="font-extrabold text-3xl">8</div>
+              <div className="font-extrabold text-3xl">
+                {dashState.waste_types
+                  ? Object.keys(dashState.waste_types).length
+                  : 0}
+              </div>
             </div>
             <div>
               <div className=" font-normal text-lg mt-5">
                 Total waste collected
               </div>
               <div className="flex">
-                <div className="font-extrabold text-3xl">560</div>
+                <div className="font-extrabold text-3xl">
+                  {dashState.weight ? dashState.weight.toFixed(2) : 0}
+                </div>
                 <div className=" mt-3 ml-2 text-lg">kg</div>
               </div>
             </div>
@@ -91,7 +125,9 @@ export default function Home() {
                 Total waste recycled
               </div>
               <div className="flex">
-                <div className="font-extrabold text-3xl">450</div>
+                <div className="font-extrabold text-3xl">
+                  {dashState.toxins ? dashState.toxins.toFixed(2) : 0}
+                </div>
                 <div className=" mt-3 ml-2 text-lg">kg</div>
               </div>
             </div>
