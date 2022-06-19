@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { DoughnutChart } from "../components/Doughnut";
 import { LineChart } from "../components/Line";
+import { transactions } from "../utils/transactions";
 export default function Home() {
   const [dashState, setDashState] = useState({
     prev_week_reports_approved: [],
@@ -15,6 +16,11 @@ export default function Home() {
     waste_types: {},
     weight: 0,
     appusers: 0,
+    waste_in: undefined,
+    waste_out: undefined,
+    top_5_states: undefined,
+    transactions: transactions,
+    income: 1000,
   });
   useEffect(() => {
     getData();
@@ -136,7 +142,10 @@ export default function Home() {
         <div className="mt-14">
           <div className="bg-white p-5 rounded-3xl w-full">
             <div className="w-full mx-auto">
-              <LineChart />
+              <LineChart
+                waste_in={dashState.waste_in}
+                waste_out={dashState.waste_out}
+              />
             </div>
           </div>
         </div>
@@ -146,7 +155,7 @@ export default function Home() {
           <div className="h-14 w-14 bg-white rounded-full my-auto"></div>
           <div className="ml-4 m-auto">
             <div className=" font-normal text-lg">Income</div>
-            <div className="font-bold text-3xl">Rs. 10000</div>
+            <div className="font-bold text-3xl">Rs. {dashState.income}</div>
           </div>
         </div>
         <div className="font-extrabold text-2xl mt-10 mb-2">
@@ -154,149 +163,28 @@ export default function Home() {
         </div>
 
         {/* Transactions */}
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Credit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Debit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Credit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Debit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Credit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Debit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Credit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Debit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Credit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Debit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Credit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-red-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Debit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
-        <div className="flex justify-between mt-5">
-          <div className="h-14 w-14 bg-green-500 rounded-full my-auto"></div>
-          <div className="my-auto">
-            <div className="font-bold text-md ">Credit</div>
-            <div className="text-gray-400 text-sm">Hotel Garden</div>
-          </div>
-          <div className="my-auto">
-            <div className="font-bold text-md">Rs. 100</div>
-            <div className="text-gray-400 text-sm">12th May 2021</div>
-          </div>
-        </div>
+
+        {dashState.transactions.length !== 0
+          ? dashState.transactions.map((tx) => {
+              let style =
+                tx.type === "Credit"
+                  ? "h-14 w-14 bg-green-500 rounded-full my-auto"
+                  : "h-14 w-14 bg-red-500 rounded-full my-auto";
+              return (
+                <div className="flex justify-between mt-5" key={tx}>
+                  <div className={style}></div>
+                  <div className="my-auto">
+                    <div className="font-bold text-md ">{tx.type}</div>
+                    <div className="text-gray-400 text-sm">{tx.company}</div>
+                  </div>
+                  <div className="my-auto">
+                    <div className="font-bold text-md">Rs. {tx.amount}</div>
+                    <div className="text-gray-400 text-sm">{tx.date}</div>
+                  </div>
+                </div>
+              );
+            })
+          : ""}
       </div>
     </div>
   );
