@@ -1,6 +1,7 @@
 from dashboard.models import Report
 from recycler.models import Recycler
 from mobile.models import AppUser
+from dashboard.utils import getTransactions
 from .serializers import CreateAdminProfileSerializer
 from rest_framework.permissions import IsAuthenticated
 from authentication.utils import get_tokens_for_user
@@ -71,6 +72,19 @@ class GetStatsAPI(generics.GenericAPIView):
                     else:
                         prev_week_reports_approved.append(cur_report)
         toxins = weight * 0.1
+
+        # only these 4 values are hardcoded for now others are dynamic
+        top_5_states = {
+            "MAH": 12,
+            "UP": 19,
+            "BH": 3,
+            "KT": 5,
+            "J&K": 2,
+        }
+        waste_in = [40, 90, 50, 100, 140, 20, 70]
+        waste_out = [100, 120, 30, 40, 90, 110, 10]
+        transactions = getTransactions()
+
         resp = {
             "waste_types": waste_types,
             "toxins": toxins,
@@ -82,5 +96,10 @@ class GetStatsAPI(generics.GenericAPIView):
             "prev_week_reports_approved": prev_week_reports_approved,
             "prev_week_reports_picked": prev_week_reports_picked,
             "appusers": appusers,
+            "top_5_states": top_5_states,
+            "waste_out": waste_out,
+            "waste_in": waste_in,
+            "income": 18930,
+            "transactions": transactions,
         }
         return Response({"data": {"stats": resp}})
