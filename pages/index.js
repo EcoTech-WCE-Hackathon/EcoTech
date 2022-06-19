@@ -49,6 +49,7 @@ export default function Home() {
         <title>Admin | EchoTech</title>
         <meta name="description" content="Admin Website for Echotech" />
         <link rel="icon" href="/favicon.png" />
+        <meta property="og:image" content="/site.png" />
       </Head>
 
       {/* card section 1*/}
