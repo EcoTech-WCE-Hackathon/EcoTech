@@ -304,7 +304,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"approved\":true,\n    \"weight\":50.56,\n    \"id\":\"b99db363-539f-4885-89c6-03332611c088\"\n}",
+							"raw": "{\n    \"approved\":true,\n    \"weight\":50.56,\n    \"image_id\":\"b99db363-539f-4885-89c6-03332611c088\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

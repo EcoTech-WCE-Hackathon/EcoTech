@@ -31,12 +31,13 @@ class WasteListAPI(generics.GenericAPIView):
         return Response({"data": {"waste": list(reports)}})
 
     def patch(self, request, *args, **kwargs):
-        report = Report.objects.get(image_id=uuid.UUID(request.data["id"]))
-        if request.data["approved"]:
+        data = request.data["data"]
+        report = Report.objects.get(image_id=uuid.UUID(data["image_id"]))
+        if data["approved"]:
             report.recycler = Recycler.objects.get(user=request.user)
-            report.weight = request.data["weight"]
+            report.weight = data["weight"]
             report.pickedUp = True
-            report.appUser.tokens += report.weight * 10
+            report.appUser.tokens += float(report.weight) * 10
             report.appUser.save()
             report.save()
             return Response({"message": "Picked Up Successfully"})
