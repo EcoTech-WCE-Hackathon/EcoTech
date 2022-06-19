@@ -1,4 +1,3 @@
-import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { DoughnutChart } from "../components/Doughnut";
@@ -15,8 +14,12 @@ import reportPNG from "../assets/report.png";
 import transactionsPNG from "../assets/transactions.png";
 import usersPNG from "../assets/users.png";
 import wastePNG from "../assets/waste.png";
-
+import logoutPNG from "../assets/logout.png";
+import { useRouter } from "next/router";
+import axiosApiInstance from "../utils/axiosConfig";
+import Logout from "../utils/Logout";
 export default function Home() {
+  const router = useRouter();
   const [dashState, setDashState] = useState({
     prev_week_reports_approved: [],
     prev_week_reports_picked: [],
@@ -34,10 +37,13 @@ export default function Home() {
     income: 1000,
   });
   useEffect(() => {
+    if (!sessionStorage.getItem("access")) {
+      router.push("/login");
+    }
     getData();
   }, []);
   const getData = async () => {
-    let resp = await axios.get(
+    let resp = await axiosApiInstance.get(
       `${process.env.NEXT_PUBLIC_SERVER}/api/v1/dashboard/stats`
     );
     console.log(resp.data.data);
@@ -97,6 +103,17 @@ export default function Home() {
             alt="recycler"
           />
           <div className="text-2xl ml-5">Recyclers</div>
+        </div>
+
+        <div
+          className=" flex justify-start hover:bg-[#E7F4F4] p-3 hover:cursor-pointer"
+          onClick={() => {
+            Logout();
+            router.push("/login");
+          }}
+        >
+          <img src={logoutPNG.src} className="w-7 h-7 my-auto" alt="logout" />
+          <div className="text-2xl ml-5">Logout</div>
         </div>
       </div>
       <div className=" bg-[#E7F4F4] min-h-screen p-5 w-4/6">
