@@ -1,5 +1,6 @@
 from dashboard.models import Report
 from recycler.models import Recycler
+from mobile.models import AppUser
 from .serializers import CreateAdminProfileSerializer
 from rest_framework.permissions import IsAuthenticated
 from authentication.utils import get_tokens_for_user
@@ -29,6 +30,7 @@ class GetStatsAPI(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
         reports = Report.objects.all()
         recyclers = len(Recycler.objects.all())
+        appusers = len(AppUser.objects.all())
         total_reports = len(reports)
         total_picked_up = 0
         total_approved = 0
@@ -79,5 +81,6 @@ class GetStatsAPI(generics.GenericAPIView):
             "total_picked_up": total_picked_up,
             "prev_week_reports_approved": prev_week_reports_approved,
             "prev_week_reports_picked": prev_week_reports_picked,
+            "appusers": appusers,
         }
         return Response({"data": {"stats": resp}})

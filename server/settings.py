@@ -36,8 +36,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = "http://localhost:3000"
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+CORS_ORIGIN_WHITELIST = ("http://localhost:3000", "https://eco-tech.cf")
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "https://eco-tech.cf"]
 # Application definition
 
 INSTALLED_APPS = [
