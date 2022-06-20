@@ -22,8 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
       _ChartData('WED', 30),
       _ChartData('THU', 6.4),
       _ChartData('FRI', 14),
-      _ChartData('SAT', 14),
-      _ChartData('SUN', 14),
+      _ChartData('SAT', 7),
+      _ChartData('SUN', 18),
     ];
 
     super.initState();
@@ -82,34 +82,39 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "./images/ecotech_white.png",
-                      height: 30,
-                    ),
-                    Text(
-                      "150.38",
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      "EcoTokens earned",
-                      style: GoogleFonts.poppins(
-                        fontSize: 10,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white,
-                      ),
+                    Column(
+                      children: [
+                        Image.asset(
+                          "./images/ecotech_white.png",
+                          height: 30,
+                        ),
+                        Text(
+                          "150.38",
+                          style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          "EcoTokens earned",
+                          style: GoogleFonts.poppins(
+                            fontSize: 10,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.2,
+                          width: MediaQuery.of(context).size.width * 0.25,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
@@ -142,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 8,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.2,
+                          width: MediaQuery.of(context).size.width * 0.25,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
@@ -175,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 8,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.2,
+                          width: MediaQuery.of(context).size.width * 0.25,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
@@ -215,14 +220,19 @@ class _HomeScreenState extends State<HomeScreen> {
               SfCartesianChart(
                 primaryXAxis: CategoryAxis(),
                 primaryYAxis: NumericAxis(minimum: 0, maximum: 40, interval: 10),
-                // tooltipBehavior: _tooltip,
+                enableAxisAnimation: true,
                 series: <ChartSeries<_ChartData, String>>[
-                  AreaSeries<_ChartData, String>(
+                  SplineAreaSeries<_ChartData, String>(
                     dataSource: data,
                     xValueMapper: (_ChartData data, _) => data.x,
                     yValueMapper: (_ChartData data, _) => data.y,
-                    name: 'Gold',
-                    color: AppColors.brandColor,
+                    name: 'Waste Reported',
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [AppColors.brandColor, Color(0xffa2f5f5)],
+                      stops: [0.6, 1.0],
+                    ),
                   ),
                 ],
               ),
