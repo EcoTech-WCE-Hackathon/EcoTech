@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "5d738c33-6928-4cfb-9692-94d8c5417f3c",
+		"name": "EchoTech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "dashboard",
+			"item": [
+				{
+					"name": "Stats",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NjQxODI0LCJpYXQiOjE2NTU1NTU0MjQsImp0aSI6ImNlZDVkODAwZGE0YjRiMmI4NzMyNTBhODJhNzIyN2QxIiwidXNlcl9pZCI6Mn0.Ir9O0jBPO38lzNm13C8fJXnVHwpW4xgBVqnlg4TFAF0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/dashboard/stats",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"dashboard",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"admin-1@email.com\",\n    \"password\":\"admin-1-password\",\n    \"username\":\"admin-1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/dashboard/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"dashboard",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mobile",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"user-1@email.com\",\n    \"password\":\"user-1-password\",\n    \"username\":\"user-1\",\n    \"name\":\"user-1\",\n    \"mobileNumber\":\"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/mobile/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mobile",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Stats",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NjUwMTE2LCJpYXQiOjE2NTU1NjM3MTYsImp0aSI6IjRkMTAzYjEzZjM1NDRiMzZiMDhiNzA5ZDU3MTY0Yzk4IiwidXNlcl9pZCI6M30.jimnvsifOiCuhb7zEHG94qpy9comK8AtByqyuSN888s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/mobile/stats",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mobile",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Report Waste",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NjUwMTE2LCJpYXQiOjE2NTU1NjM3MTYsImp0aSI6IjRkMTAzYjEzZjM1NDRiMzZiMDhiNzA5ZDU3MTY0Yzk4IiwidXNlcl9pZCI6M30.jimnvsifOiCuhb7zEHG94qpy9comK8AtByqyuSN888s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/burhanuddin/Downloads/wrapd.png"
+								},
+								{
+									"key": "location",
+									"value": "this is the location",
+									"type": "text"
+								},
+								{
+									"key": "wasteType",
+									"value": "computer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/mobile/report",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mobile",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NjUwMTE2LCJpYXQiOjE2NTU1NjM3MTYsImp0aSI6IjRkMTAzYjEzZjM1NDRiMzZiMDhiNzA5ZDU3MTY0Yzk4IiwidXNlcl9pZCI6M30.jimnvsifOiCuhb7zEHG94qpy9comK8AtByqyuSN888s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/mobile/profile",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mobile",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "recycler",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"email\":\"recycler-1@email.com\",\n    \"password\":\"recycler-1-password\",\n    \"username\":\"recycler-1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/recycler/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recycler",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Waste",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NjQxODI0LCJpYXQiOjE2NTU1NTU0MjQsImp0aSI6ImNlZDVkODAwZGE0YjRiMmI4NzMyNTBhODJhNzIyN2QxIiwidXNlcl9pZCI6Mn0.Ir9O0jBPO38lzNm13C8fJXnVHwpW4xgBVqnlg4TFAF0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/recycler/pickup",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recycler",
+								"pickup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pickup Waste",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NjQxOTMzLCJpYXQiOjE2NTU1NTU1MzMsImp0aSI6IjdjZWI0MjJlMGExODQyNTA4MmVmODM1NjNiMWMyZDBkIiwidXNlcl9pZCI6NH0.lnpZ51YJN9jzXLC0VOWXdcwHub9L4bBAugczzke5msE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"approved\":true,\n    \"weight\":50.56,\n    \"image_id\":\"b99db363-539f-4885-89c6-03332611c088\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/recycler/pickup",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recycler",
+								"pickup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Common",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"user-1\",\n    \"password\":\"user-1-password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY1Njg1MTYyNCwiaWF0IjoxNjU1NTU1NjI0LCJqdGkiOiJjN2M4OTA4MWQzNzE0ODA1YjNlOGZiODFjZWY4NDllYyIsInVzZXJfaWQiOjJ9.YbmSULPb0r9o5cY5hEoXJv_CUigaC6fJckystH6Dyhw\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/auth/token/refresh",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
