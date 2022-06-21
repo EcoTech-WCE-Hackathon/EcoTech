@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecotech-server
+spec:
+  selector:
+    matchLabels:
+      app: ecotech-server
+  template:
+    metadata:
+      labels:
+        app: ecotech-server
+    spec:
+      containers:
+      - name: ecotech-server
+        image: burhanuddinmerchant/ecotech-server:1.0.0
+        envFrom:
+          - secretRef:
+              name: dev-secrets
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
