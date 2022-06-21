@@ -30,3 +30,9 @@ class CreateRecyclerProfileSerializer(serializers.ModelSerializer):
         )
         user_profile.save()
         return user
+
+
+class WasteListSerializer(serializers.Serializer):
+    approved = serializers.BooleanField()
+    image_id = serializers.CharField(max_length=256)
+    weight = serializers.FloatField()

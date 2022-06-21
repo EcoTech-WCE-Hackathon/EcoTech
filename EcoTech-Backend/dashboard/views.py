@@ -2,7 +2,7 @@ from dashboard.models import Report
 from recycler.models import Recycler
 from mobile.models import AppUser
 from dashboard.utils import getTransactions
-from .serializers import CreateAdminProfileSerializer
+from .serializers import CreateAdminProfileSerializer, DashBoardStatsSerializer
 from rest_framework.permissions import IsAuthenticated
 from authentication.utils import get_tokens_for_user
 from rest_framework import generics
@@ -27,6 +27,7 @@ class AdminRegistrationAPI(generics.GenericAPIView):
 class GetStatsAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
     throttle_scope = "user"
+    serializer_class = DashBoardStatsSerializer
 
     def get(self, request, *args, **kwargs):
         reports = Report.objects.all()

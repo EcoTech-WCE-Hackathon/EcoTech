@@ -1,7 +1,6 @@
-from unicodedata import decimal
 from dashboard.models import Report
 from recycler.models import Recycler
-from .serializers import CreateRecyclerProfileSerializer
+from .serializers import CreateRecyclerProfileSerializer, WasteListSerializer
 from rest_framework.permissions import IsAuthenticated
 from authentication.utils import get_tokens_for_user
 from rest_framework import generics
@@ -25,6 +24,7 @@ class RecyclerRegistrationAPI(generics.GenericAPIView):
 class WasteListAPI(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
     throttle_scope = "user"
+    serializer_class = WasteListSerializer
 
     def get(self, request, *args, **kwargs):
         reports = Report.objects.filter(approved=True, pickedUp=False).values()

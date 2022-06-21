@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "mobile.apps.MobileConfig",
     "authentication.apps.AuthenticationConfig",
     "corsheaders",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
@@ -155,7 +156,7 @@ MEDIA_URL = "/media/"
 
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,

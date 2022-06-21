@@ -3,12 +3,17 @@ from mobile.models import AppUser
 from dashboard.models import Report
 from mobile.utils import upload_image_to_s3
 from mobile.predictor import Predictor
-from .serializers import CreateAppUserProfileSerializer
+from .serializers import (
+    CreateAppUserProfileSerializer,
+    UserProfileSerializer,
+    UserStatsSerializer,
+)
 from rest_framework.permissions import IsAuthenticated
 from authentication.utils import get_tokens_for_user
 from rest_framework import generics
 from rest_framework.response import Response
 from django.utils import timezone
+from .serializers import ReportEWasteSerializer
 
 
 class AppUserRegistrationAPI(generics.GenericAPIView):
@@ -25,6 +30,7 @@ class AppUserRegistrationAPI(generics.GenericAPIView):
 
 
 class AppUserProfileAPI(generics.GenericAPIView):
+    serializer_class = UserProfileSerializer
     permission_classes = (IsAuthenticated,)
     throttle_scope = "user"
 
@@ -40,6 +46,7 @@ class AppUserProfileAPI(generics.GenericAPIView):
 
 
 class GetStatsAPI(generics.GenericAPIView):
+    serializer_class = UserStatsSerializer
     permission_classes = (IsAuthenticated,)
     throttle_scope = "user"
 
@@ -84,6 +91,7 @@ class GetStatsAPI(generics.GenericAPIView):
 
 
 class ReportEWasteAPI(generics.GenericAPIView):
+    serializer_class = ReportEWasteSerializer
     permission_classes = (IsAuthenticated,)
     throttle_scope = "user"
 

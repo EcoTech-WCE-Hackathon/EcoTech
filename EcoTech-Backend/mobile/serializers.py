@@ -7,13 +7,7 @@ class CreateAppUserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = AppUser
 
-        fields = (
-            "email",
-            "password",
-            "username",
-            'name',
-            'mobileNumber'
-        )
+        fields = ("email", "password", "username", "name", "mobileNumber")
         extra_kwargs = {
             "password": {"write_only": True},
         }
@@ -28,9 +22,35 @@ class CreateAppUserProfileSerializer(serializers.ModelSerializer):
         user_profile = AppUser(
             user=user,
             username=validated_data["username"],
-            name=validated_data['name'],
-            mobileNumber=validated_data['mobileNumber'],
+            name=validated_data["name"],
+            mobileNumber=validated_data["mobileNumber"],
             email=validated_data["email"],
         )
         user_profile.save()
         return user
+
+
+class UserProfileSerializer(serializers.Serializer):
+    def create(self, validated_data):
+        request = self.context.get("request")
+        user = AppUser.objects.filter(user=request.user).first()
+        return user
+
+
+class UserStatsSerializer(serializers.Serializer):
+    def create(self, validated_data):
+        request = self.context.get("request")
+        user = AppUser.objects.filter(user=request.user).first()
+        return user
+
+
+class ReportEWasteSerializer(serializers.Serializer):
+    image = serializers.ImageField()
+    location = serializers.CharField(max_length=256)
+    wasteType = serializers.CharField(max_length=256)
+
+    def create(self, validated_data):
+        image = validated_data["image"]
+        location = validated_data["location"]
+        wasteType = validated_data["wasteType"]
+        return {"image": image, "location": location, "wasteType": wasteType}

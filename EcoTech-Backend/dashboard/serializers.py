@@ -30,3 +30,8 @@ class CreateAdminProfileSerializer(serializers.ModelSerializer):
         )
         user_profile.save()
         return user
+
+
+class DashBoardStatsSerializer(serializers.Serializer):
+    def create(self, validated_data):
+        pass
