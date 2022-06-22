@@ -63,7 +63,7 @@ You should expect an output similar to this:
 
 <hr/>
 
-### 3. Using Kubernetes :anchor:
+### 3. Using Kubernetes :snowflake:
 
 Make sure you have the entrypoint.sh file in the project root. (refer the example.entrypoint.sh file)
 Create a dev.env file (refer example.dev.env)
