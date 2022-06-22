@@ -22,6 +22,9 @@ foo@bar:~$ flutter pub get
 foo@bar:~$ flutter run lib/main.dart
 ``` 
 
+### Screenshots of the app:
+<img src="https://github.com/EcoTech-WCE-Hackathon/EcoTech/blob/master/EcoTech-App/images/1-onboarding.jpeg" width="300"/> <img src="https://github.com/EcoTech-WCE-Hackathon/EcoTech/blob/master/EcoTech-App/images/2-onboarding.jpeg" width="300"/> <img src="https://github.com/EcoTech-WCE-Hackathon/EcoTech/blob/master/EcoTech-App/images/3-register.jpeg" width="300"/> <img src="https://github.com/EcoTech-WCE-Hackathon/EcoTech/blob/master/EcoTech-App/images/4-login.jpeg" width="300"/> <img src="https://github.com/EcoTech-WCE-Hackathon/EcoTech/blob/master/EcoTech-App/images/5-home.jpeg" width="300"/> <img src="https://github.com/EcoTech-WCE-Hackathon/EcoTech/blob/master/EcoTech-App/images/6-image.jpeg" width="300"/> <img src="https://github.com/EcoTech-WCE-Hackathon/EcoTech/blob/master/EcoTech-App/images/7-send-report.jpeg" width="300"/> <img src="https://github.com/EcoTech-WCE-Hackathon/EcoTech/blob/master/EcoTech-App/images/8-verdict.jpeg" width="300"/>
+
 #### Thank You very much for following along.
 
 You can visit the other services in the project [here](https://github.com/EcoTech-WCE-Hackathon/EcoTech)
