@@ -1,1 +1,1 @@
-const String BASE_URL = "eco-tech.herokuapp.com";
+const String BASE_URL = "https://eco-tech.herokuapp.com/api/v1";

@@ -54,7 +54,8 @@ class _LoginRegisterState extends State<LoginRegister> {
   TextEditingController registerUsernameController = TextEditingController();
   TextEditingController registerEmailController = TextEditingController();
   TextEditingController registerPasswordController = TextEditingController();
-  TextEditingController registerConfirmPasswordController = TextEditingController();
+  TextEditingController registerConfirmPasswordController =
+      TextEditingController();
   TextEditingController registerAddressController = TextEditingController();
 
   late SharedPreferences prefs;
@@ -233,7 +234,8 @@ class _LoginRegisterState extends State<LoginRegister> {
                           Container(
                             width: screenWidth,
                             height: 60,
-                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 40),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
@@ -260,8 +262,9 @@ class _LoginRegisterState extends State<LoginRegister> {
                                     controller: registerPasswordController,
                                     obscureText: _isRegisterPasswordHidden,
                                     decoration: InputDecoration(
-                                      errorText:
-                                          registerPasswordValidate ? 'Field can\'t be empty' : null,
+                                      errorText: registerPasswordValidate
+                                          ? 'Field can\'t be empty'
+                                          : null,
                                       errorStyle: GoogleFonts.montserrat(
                                         color: Colors.red,
                                       ),
@@ -271,7 +274,8 @@ class _LoginRegisterState extends State<LoginRegister> {
                                         color: Colors.black,
                                       ),
                                       suffix: Padding(
-                                        padding: const EdgeInsets.only(right: 20),
+                                        padding:
+                                            const EdgeInsets.only(right: 20),
                                         child: InkWell(
                                           onTap: () {
                                             setState(() {
@@ -297,7 +301,8 @@ class _LoginRegisterState extends State<LoginRegister> {
                           Container(
                             width: screenWidth,
                             height: 60,
-                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 40),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
@@ -308,7 +313,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 60,
                                   child: Icon(
                                     Icons.lock,
@@ -321,8 +326,10 @@ class _LoginRegisterState extends State<LoginRegister> {
                                     textInputAction: TextInputAction.next,
                                     textCapitalization: TextCapitalization.none,
                                     style: GoogleFonts.montserrat(),
-                                    controller: registerConfirmPasswordController,
-                                    obscureText: _isRegisterConfirmPasswordHidden,
+                                    controller:
+                                        registerConfirmPasswordController,
+                                    obscureText:
+                                        _isRegisterConfirmPasswordHidden,
                                     decoration: InputDecoration(
                                       errorText: registerConfirmPasswordValidate
                                           ? 'Field can\'t be empty'
@@ -336,7 +343,8 @@ class _LoginRegisterState extends State<LoginRegister> {
                                         color: Colors.black,
                                       ),
                                       suffix: Padding(
-                                        padding: const EdgeInsets.only(right: 20),
+                                        padding:
+                                            const EdgeInsets.only(right: 20),
                                         child: InkWell(
                                           onTap: () {
                                             setState(() {
@@ -372,12 +380,14 @@ class _LoginRegisterState extends State<LoginRegister> {
                           Container(
                             width: screenWidth,
                             height: 60,
-                            margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 20, horizontal: 40),
                             child: isRegisterLoading
                                 ? const Center(
                                     child: CircularProgressIndicator(
                                       backgroundColor: AppColors.brandColor,
-                                      valueColor: AlwaysStoppedAnimation(Colors.white),
+                                      valueColor:
+                                          AlwaysStoppedAnimation(Colors.white),
                                     ),
                                   )
                                 : TextButton(
@@ -394,15 +404,21 @@ class _LoginRegisterState extends State<LoginRegister> {
 
                                       setState(() {
                                         isRegisterLoading = true;
-                                        fname = registerFirstNameController.text;
+                                        fname =
+                                            registerFirstNameController.text;
                                         lname = registerLastNameController.text;
                                         name = '$fname $lname';
                                         phone = registerPhoneController.text;
-                                        username = registerUsernameController.text;
+                                        username =
+                                            registerUsernameController.text;
                                         email = registerEmailController.text;
-                                        password = registerPasswordController.text;
-                                        confirmPassword = registerConfirmPasswordController.text;
-                                        address = registerAddressController.text;
+                                        password =
+                                            registerPasswordController.text;
+                                        confirmPassword =
+                                            registerConfirmPasswordController
+                                                .text;
+                                        address =
+                                            registerAddressController.text;
 
                                         fname.isEmpty
                                             ? registerFirstNameValidate = true
@@ -423,8 +439,10 @@ class _LoginRegisterState extends State<LoginRegister> {
                                             ? registerPasswordValidate = true
                                             : registerPasswordValidate = false;
                                         confirmPassword.isEmpty
-                                            ? registerConfirmPasswordValidate = true
-                                            : registerConfirmPasswordValidate = false;
+                                            ? registerConfirmPasswordValidate =
+                                                true
+                                            : registerConfirmPasswordValidate =
+                                                false;
                                         address.isEmpty
                                             ? registerAddressValidate = true
                                             : registerAddressValidate = false;
@@ -566,7 +584,8 @@ class _LoginRegisterState extends State<LoginRegister> {
                           Container(
                             width: screenWidth,
                             height: 60,
-                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 40),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
@@ -576,7 +595,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                             ),
                             child: Row(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 60,
                                   child: Icon(
                                     Icons.mail,
@@ -597,8 +616,9 @@ class _LoginRegisterState extends State<LoginRegister> {
                                       hintStyle: GoogleFonts.montserrat(
                                         color: Colors.black,
                                       ),
-                                      errorText:
-                                          loginEmailValidate ? 'Field can\'t be empty' : null,
+                                      errorText: loginEmailValidate
+                                          ? 'Field can\'t be empty'
+                                          : null,
                                       errorStyle: GoogleFonts.montserrat(
                                         color: Colors.red,
                                       ),
@@ -611,7 +631,8 @@ class _LoginRegisterState extends State<LoginRegister> {
                           Container(
                             width: screenWidth,
                             height: 60,
-                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 40),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
@@ -622,7 +643,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 60,
                                   child: Icon(
                                     Icons.lock,
@@ -640,8 +661,9 @@ class _LoginRegisterState extends State<LoginRegister> {
                                     obscureText: _isLoginPasswordHidden,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      errorText:
-                                          loginPasswordValidate ? 'Field can\'t be empty' : null,
+                                      errorText: loginPasswordValidate
+                                          ? 'Field can\'t be empty'
+                                          : null,
                                       errorStyle: GoogleFonts.montserrat(
                                         color: Colors.red,
                                       ),
@@ -650,11 +672,13 @@ class _LoginRegisterState extends State<LoginRegister> {
                                         color: Colors.black,
                                       ),
                                       suffix: Padding(
-                                        padding: const EdgeInsets.only(right: 20),
+                                        padding:
+                                            const EdgeInsets.only(right: 20),
                                         child: InkWell(
                                           onTap: () {
                                             setState(() {
-                                              _isLoginPasswordHidden = !_isLoginPasswordHidden;
+                                              _isLoginPasswordHidden =
+                                                  !_isLoginPasswordHidden;
                                             });
                                           },
                                           child: Icon(
@@ -675,12 +699,14 @@ class _LoginRegisterState extends State<LoginRegister> {
                           Container(
                             width: screenWidth,
                             height: 60,
-                            margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 20, horizontal: 40),
                             child: isLoginLoading
-                                ? Center(
+                                ? const Center(
                                     child: CircularProgressIndicator(
                                       backgroundColor: AppColors.brandColor,
-                                      valueColor: const AlwaysStoppedAnimation(Colors.white),
+                                      valueColor:
+                                          AlwaysStoppedAnimation(Colors.white),
                                     ),
                                   )
                                 : TextButton(

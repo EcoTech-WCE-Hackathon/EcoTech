@@ -2,12 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:ecotech/components/button.dart';
+import 'package:ecotech/screens/send_report.dart';
 import "package:flutter/material.dart";
 import "package:geolocator/geolocator.dart";
 import "package:http/http.dart" as http;
 
 class UploadImageScreen extends StatefulWidget {
-  const UploadImageScreen({Key? key, required this.imageFile}) : super(key: key);
+  const UploadImageScreen({Key? key, required this.imageFile})
+      : super(key: key);
 
   final File imageFile;
 
@@ -48,15 +50,16 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
                   color: Colors.white,
                 ),
                 onPressed: () async {
-                  LocationPermission permission = await Geolocator.checkPermission();
+                  LocationPermission permission =
+                      await Geolocator.checkPermission();
                   if (permission == LocationPermission.denied) {
                     permission = await Geolocator.requestPermission();
                     if (permission == LocationPermission.denied) {
                       print("Permission denied!!!");
                     }
                   }
-                  Position position =
-                      await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+                  Position position = await Geolocator.getCurrentPosition(
+                      desiredAccuracy: LocationAccuracy.high);
                   var headers = {
                     "accept": "application/json",
                   };
@@ -67,7 +70,16 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
                   );
                   Map responseJson = json.decode(response.body);
 
-                  print(responseJson["results"][0]["formatted_address"]);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SendReport(
+                        imageFile: widget.imageFile,
+                        location: responseJson["results"][0]
+                            ["formatted_address"],
+                      ),
+                    ),
+                  );
                 },
               )
             ],
