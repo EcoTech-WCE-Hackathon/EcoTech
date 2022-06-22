@@ -128,6 +128,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  ftoast:
+    dependency: "direct main"
+    description:
+      name: ftoast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   geolocator:
     dependency: "direct main"
     description:

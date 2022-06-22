@@ -226,7 +226,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SfCartesianChart(
                 primaryXAxis: CategoryAxis(),
-                primaryYAxis: NumericAxis(minimum: 0, maximum: 40, interval: 10),
+                primaryYAxis:
+                    NumericAxis(minimum: 0, maximum: 40, interval: 10),
                 enableAxisAnimation: true,
                 series: <ChartSeries<_ChartData, String>>[
                   SplineAreaSeries<_ChartData, String>(
@@ -250,8 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () async {
                   XFile? image = await picker.pickImage(
                     source: ImageSource.gallery,
-                    imageQuality: 50,
-                    preferredCameraDevice: CameraDevice.front,
+                    imageQuality: 5,
                   );
                   setState(() {
                     _image = File(image!.path);

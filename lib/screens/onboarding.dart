@@ -104,8 +104,7 @@ class _OnboardingState extends State<Onboarding> {
                   await prefs.setBool('firstTime', false);
                   Navigator.of(context).pushReplacement(
                     PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) =>
-                          const LoginRegister(),
+                      pageBuilder: (context, animation, secondaryAnimation) => LoginRegister(),
                       transitionDuration: const Duration(milliseconds: 1000),
                       transitionsBuilder: (context, animation, secondaryAnimation, child) {
                         animation = CurvedAnimation(parent: animation, curve: Curves.easeInOut);
