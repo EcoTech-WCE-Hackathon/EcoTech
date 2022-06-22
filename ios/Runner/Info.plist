@@ -43,5 +43,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+    <string>To capture waste</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app needs access to location when open in order to get the location of the waste</string>
 </dict>
 </plist>

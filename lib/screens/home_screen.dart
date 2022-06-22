@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:ecotech/components/button.dart';
 import 'package:ecotech/helper/colors.dart';
+import 'package:ecotech/screens/upload_image_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -31,6 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ImagePicker picker = ImagePicker();
+    late File _image;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -226,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     dataSource: data,
                     xValueMapper: (_ChartData data, _) => data.x,
                     yValueMapper: (_ChartData data, _) => data.y,
-                    name: 'Waste Reported',
+                    cardinalSplineTension: 1,
                     gradient: const LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -239,8 +246,27 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 24,
               ),
-              const PrimaryButton(
-                icon: Icon(
+              PrimaryButton(
+                onPressed: () async {
+                  XFile? image = await picker.pickImage(
+                    source: ImageSource.gallery,
+                    imageQuality: 50,
+                    preferredCameraDevice: CameraDevice.front,
+                  );
+                  setState(() {
+                    _image = File(image!.path);
+                  });
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UploadImageScreen(
+                        imageFile: _image,
+                      ),
+                    ),
+                  );
+                },
+                icon: const Icon(
                   Icons.camera_alt,
                   color: Colors.white,
                 ),
