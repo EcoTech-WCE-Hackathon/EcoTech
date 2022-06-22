@@ -1,16 +1,29 @@
-# ecotech
+# WCE Hackathon - EcoTech App
 
-A new Flutter project.
+## Welcome to the EcoTech App Repo for EcoTech
 
-## Getting Started
+#### EcoTech is a mobile app for reporting E-Waste effeciently and thereby reducing the damage to the environment cauesd by the E-Waste
 
-This project is a starting point for a Flutter application.
+#### Ecotech is based on a business model which makes it sustainable both for the earth and money wise
 
-A few resources to get you started if this is your first Flutter project:
+#### We use this ML Image Classifier as a first layer filter for identification of e-waste
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+#### Lets get started with running the app locally on a mobile
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Make sure you have **Android Studio/VS Code** with all the prerequisites from the [**Flutter Documentation**](https://docs.flutter.dev/get-started/editor) 
+2. **Clone** this repository.
+3. Put your mobile device in **Developer Mode** and enable **USB debugging** in the settings.
+4. **Connect your device** to the laptop/computer using a USB cable.
+5. Or download, install and start a **Virtual simulator**.
+6. Once your device/virtual device is detected, **run** the following command:
+
+```console
+foo@bar:~$ flutter pub get
+foo@bar:~$ flutter run lib/main.dart
+``` 
+
+#### Thank You very much for following along.
+
+You can visit the other services in the project [here](https://github.com/EcoTech-WCE-Hackathon/EcoTech)
+<br/>
+Happy Coding :wink:
