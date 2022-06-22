@@ -13,7 +13,7 @@
 There are 5 Components To EcoTech:
 
 1. [Backend Server](https://github.com/EcoTech-WCE-Hackathon/EcoTech/tree/master/EcoTech-Backend)
-2. [Android App](https://github.com/EcoTech-WCE-Hackathon/EcoTech-App)
+2. [Mobile App](https://github.com/EcoTech-WCE-Hackathon/EcoTech-App)
 3. [Admin Dashboard](https://github.com/EcoTech-WCE-Hackathon/EcoTech/tree/master/EcoTech-Dashboard)
 4. [ML Model](https://github.com/EcoTech-WCE-Hackathon/EcoTech/tree/master/EcoTech-Classifier)
 5. [Recyclers Dashboard](https://github.com/EcoTech-WCE-Hackathon/EcoTech/tree/master/EcoTech-Recyclers)
