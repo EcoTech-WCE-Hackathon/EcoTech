@@ -266,6 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 },
+                hasIcon: true,
                 icon: const Icon(
                   Icons.camera_alt,
                   color: Colors.white,

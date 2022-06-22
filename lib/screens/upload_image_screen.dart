@@ -42,6 +42,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
               ),
               PrimaryButton(
                 text: "Fetch Location",
+                hasIcon: true,
                 icon: const Icon(
                   Icons.my_location,
                   color: Colors.white,

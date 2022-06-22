@@ -5,10 +5,16 @@ import 'package:google_fonts/google_fonts.dart';
 import '../helper/colors.dart';
 
 class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({Key? key, required this.text, required this.icon, required this.onPressed})
+  const PrimaryButton(
+      {Key? key,
+      required this.text,
+      required this.hasIcon,
+      required this.icon,
+      required this.onPressed})
       : super(key: key);
 
   final String text;
+  final bool hasIcon;
   final Icon icon;
   final AsyncCallback onPressed;
 
@@ -29,10 +35,12 @@ class PrimaryButton extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              icon,
-              const SizedBox(
-                width: 8,
-              ),
+              hasIcon ? icon : Container(),
+              hasIcon
+                  ? const SizedBox(
+                      width: 8,
+                    )
+                  : Container(),
               Text(
                 text,
                 style: GoogleFonts.poppins(
