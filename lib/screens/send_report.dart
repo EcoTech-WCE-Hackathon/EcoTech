@@ -7,6 +7,7 @@ import 'package:ecotech/screens/verdict_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SendReport extends StatefulWidget {
   const SendReport({Key? key, required this.imageFile, required this.location})
@@ -119,6 +120,9 @@ class _SendReportState extends State<SendReport> {
                     color: Colors.white,
                   ),
                   onPressed: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+
                     var uri = Uri.parse("$BASE_URL/mobile/report");
 
                     var request = http.MultipartRequest("POST", uri);
@@ -132,10 +136,10 @@ class _SendReportState extends State<SendReport> {
                     request.fields["location"] = widget.location;
                     request.fields["wasteType"] = typeController.text;
 
-                    request.headers.addAll({
-                      "Authorization":
-                          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU2MzMwNTkwLCJpYXQiOjE2NTU4OTg1OTAsImp0aSI6IjIxNDg3NzZlZDE2YjRjMTk5M2VhODQzYjg1ZTJkZmZlIiwidXNlcl9pZCI6Nn0.gGOV6XnqtXw8iAdzlOyHz0lye7PN3FmrcSHrEk0v1Qk"
-                    });
+                    var accessToken = prefs.getString("accessToken");
+
+                    request.headers
+                        .addAll({"Authorization": "Bearer $accessToken"});
 
                     var response = await request.send();
                     response.stream.transform(utf8.decoder).listen(

@@ -1,10 +1,14 @@
+import 'dart:convert';
 import 'dart:ui';
 
+import 'package:ecotech/consts/constants.dart';
 import 'package:ecotech/helper/colors.dart';
+import 'package:ecotech/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ftoast/ftoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class LoginRegister extends StatefulWidget {
   const LoginRegister({Key? key}) : super(key: key);
@@ -35,7 +39,7 @@ class _LoginRegisterState extends State<LoginRegister> {
   double screenHeight = window.physicalSize.height / window.devicePixelRatio;
   double screenWidth = window.physicalSize.width / window.devicePixelRatio;
 
-  bool loginEmailValidate = false;
+  bool loginUsernameValidate = false;
   bool loginPasswordValidate = false;
   bool registerFirstNameValidate = false;
   bool registerLastNameValidate = false;
@@ -44,9 +48,8 @@ class _LoginRegisterState extends State<LoginRegister> {
   bool registerEmailValidate = false;
   bool registerPasswordValidate = false;
   bool registerConfirmPasswordValidate = false;
-  bool registerAddressValidate = false;
 
-  TextEditingController loginEmailController = TextEditingController();
+  TextEditingController loginUsernameController = TextEditingController();
   TextEditingController loginPasswordController = TextEditingController();
   TextEditingController registerFirstNameController = TextEditingController();
   TextEditingController registerLastNameController = TextEditingController();
@@ -56,7 +59,6 @@ class _LoginRegisterState extends State<LoginRegister> {
   TextEditingController registerPasswordController = TextEditingController();
   TextEditingController registerConfirmPasswordController =
       TextEditingController();
-  TextEditingController registerAddressController = TextEditingController();
 
   late SharedPreferences prefs;
 
@@ -67,7 +69,7 @@ class _LoginRegisterState extends State<LoginRegister> {
   @override
   void dispose() {
     super.dispose();
-    loginEmailController.dispose();
+    loginUsernameController.dispose();
     loginPasswordController.dispose();
     registerFirstNameController.dispose();
     registerLastNameController.dispose();
@@ -76,7 +78,6 @@ class _LoginRegisterState extends State<LoginRegister> {
     registerEmailController.dispose();
     registerPasswordController.dispose();
     registerConfirmPasswordController.dispose();
-    registerAddressController.dispose();
     focus.dispose();
   }
 
@@ -367,16 +368,6 @@ class _LoginRegisterState extends State<LoginRegister> {
                               ],
                             ),
                           ),
-                          buildTextField(
-                            context,
-                            'Address',
-                            Icons.location_on_rounded,
-                            TextInputType.streetAddress,
-                            registerAddressController,
-                            TextCapitalization.sentences,
-                            registerAddressValidate,
-                            TextInputAction.done,
-                          ),
                           Container(
                             width: screenWidth,
                             height: 60,
@@ -395,7 +386,6 @@ class _LoginRegisterState extends State<LoginRegister> {
                                       String fname;
                                       String lname;
                                       String name;
-                                      String address;
                                       String username;
                                       String phone;
                                       String email;
@@ -417,8 +407,6 @@ class _LoginRegisterState extends State<LoginRegister> {
                                         confirmPassword =
                                             registerConfirmPasswordController
                                                 .text;
-                                        address =
-                                            registerAddressController.text;
 
                                         fname.isEmpty
                                             ? registerFirstNameValidate = true
@@ -443,13 +431,8 @@ class _LoginRegisterState extends State<LoginRegister> {
                                                 true
                                             : registerConfirmPasswordValidate =
                                                 false;
-                                        address.isEmpty
-                                            ? registerAddressValidate = true
-                                            : registerAddressValidate = false;
                                       });
                                     },
-
-                                    // TODO: Add register logic
                                     child: Text(
                                       'Register',
                                       style: GoogleFonts.raleway(
@@ -609,14 +592,14 @@ class _LoginRegisterState extends State<LoginRegister> {
                                     keyboardType: TextInputType.emailAddress,
                                     textCapitalization: TextCapitalization.none,
                                     style: GoogleFonts.montserrat(),
-                                    controller: loginEmailController,
+                                    controller: loginUsernameController,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: 'Email',
+                                      hintText: 'Username',
                                       hintStyle: GoogleFonts.montserrat(
                                         color: Colors.black,
                                       ),
-                                      errorText: loginEmailValidate
+                                      errorText: loginUsernameValidate
                                           ? 'Field can\'t be empty'
                                           : null,
                                       errorStyle: GoogleFonts.montserrat(
@@ -711,21 +694,54 @@ class _LoginRegisterState extends State<LoginRegister> {
                                   )
                                 : TextButton(
                                     onPressed: () async {
-                                      String email;
-                                      String password;
+                                      String? username;
+                                      String? password;
 
                                       setState(() {
                                         isLoginLoading = true;
-                                        email = loginEmailController.text;
+                                        username = loginUsernameController.text;
                                         password = loginPasswordController.text;
 
-                                        email.isEmpty
-                                            ? loginEmailValidate = true
-                                            : loginEmailValidate = false;
-                                        password.isEmpty
+                                        username!.isEmpty
+                                            ? loginUsernameValidate = true
+                                            : loginUsernameValidate = false;
+                                        password!.isEmpty
                                             ? loginPasswordValidate = true
                                             : loginPasswordValidate = false;
                                       });
+
+                                      Map loginBody = {
+                                        "username": username,
+                                        "password": password
+                                      };
+
+                                      Map<String, String> headers = {
+                                        "Content-type": "application/json"
+                                      };
+
+                                      http.Response response = await http.post(
+                                        Uri.parse("$BASE_URL/auth/login"),
+                                        body: jsonEncode(loginBody),
+                                        headers: headers,
+                                      );
+
+                                      Map responseJson =
+                                          jsonDecode(response.body);
+
+                                      prefs =
+                                          await SharedPreferences.getInstance();
+                                      prefs.setString("refreshToken",
+                                          responseJson["refresh"]);
+                                      prefs.setString("accessToken",
+                                          responseJson["access"]);
+
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const HomeScreen(),
+                                        ),
+                                      );
                                     },
                                     child: Text(
                                       'Login',

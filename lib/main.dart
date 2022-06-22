@@ -1,5 +1,5 @@
-import 'package:ecotech/screens/home_screen.dart';
-import 'package:ecotech/screens/verdict_screen.dart';
+import 'package:ecotech/screens/login_register.dart';
+import 'package:ecotech/screens/onboarding.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,9 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: VerdictScreen(
-        verdict: false,
-      ),
+      home: LoginRegister(),
     );
   }
 }
