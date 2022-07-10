@@ -4,7 +4,7 @@
 
 ### A project created for WCE Hackathon 2022
 
-#### EcoTech is a mobile app for reporting E-Waste effeciently and thereby reducing the damage to the environment cauesd by the E-Waste
+#### EcoTech is a mobile app for reporting E-Waste efficiently and thereby reducing the damage to the environment caused by the E-Waste.
 
 #### Ecotech is based on a business model which makes it sustainable both for the earth and money wise
 
